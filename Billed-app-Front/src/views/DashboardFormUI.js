@@ -22,7 +22,6 @@ export const modal = () => (`
   `)
 
 export default (bill) => {
-
   return (`
     <div class="container dashboard-form" data-testid="dashboard-form">
       <div class="row">
@@ -68,7 +67,7 @@ export default (bill) => {
         <div class="col-sm">
           <label for="file" class="bold-label">Justificatif</label>
             <div class='input-field input-flex file-flex'>
-            <span id="file-name-admin">${bill.fileName}</span>
+            <span id="file-name-admin">${bill.fileName === 'null' ? (`Aucun fichier trouvé`) : `${bill.fileName}`}</span>
             <div class='icons-container'>
               <span id="icon-eye-d" data-testid="icon-eye-d" data-bill-url="${bill.fileUrl}"> ${eyeWhite} </span>
             </div>
@@ -89,14 +88,14 @@ export default (bill) => {
        `)}
       </div>
       <div class="row">
-      ${bill.status === 'pending' ? (`
-      <div class="col-sm buttons-flex" style="width: 300px;" >
-        <button type="submit" id='btn-refuse-bill' data-testid='btn-refuse-bill-d' class="btn btn-primary">Refuser</button>
-        <button type="submit" id='btn-accept-bill' data-testid='btn-accept-bill-d' class="btn btn-primary">Accepter</button>
+        ${bill.status === 'pending' ? (`
+        <div class="col-sm buttons-flex" style="width: 300px;" >
+          <button type="submit" id='btn-refuse-bill' data-testid='btn-refuse-bill-d' class="btn btn-primary">Refuser</button>
+          <button type="submit" id='btn-accept-bill' data-testid='btn-accept-bill-d' class="btn btn-primary">Accepter</button>
+        </div>
+        `) : ''}
       </div>
-      `) : ''}
-    </div>
-    ${modal()}
+      ${modal()}
     </div>
   `)
 }
