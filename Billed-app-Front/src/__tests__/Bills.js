@@ -45,6 +45,8 @@ describe("Given I am connected as an employee", () => {
       let dates = bills.map(bill => bill.date)
       const antiChrono = (a, b) => ((a < b) ? 1 : -1)
       const datesSorted = [...dates].sort(antiChrono)
+
+      // Vérification du bon tri par ordre décroissant des dates
       expect(dates).toEqual(datesSorted)
     })
 
@@ -67,6 +69,7 @@ describe("Given I am connected as an employee", () => {
       let bills = await billsList.getBills()
       document.body.innerHTML = BillsUI({ data: bills })
       const billsCount  = await screen.getByTestId("tbody").childElementCount
+
       // Vérification si les 4 bills du mock sont bien récupérées
       expect(billsCount).toEqual(4)
     })
@@ -99,6 +102,8 @@ describe("Given I am connected as an employee", () => {
         let handleClickIconEye1 = jest.fn(() => billsList.handleClickIconEye(firstEye))
         firstEye.addEventListener('click', handleClickIconEye1)
         userEvent.click(firstEye)
+
+        // Vérification si la modale s'affiche grâce à sa classe "show"
         expect(handleClickIconEye1).toHaveBeenCalled()
         expect(screen.getByTestId(`div-modale-file`).classList).toContain("show")
       })
@@ -129,6 +134,8 @@ describe("Given I am connected as an employee", () => {
         let handleClickNewBillEvent = jest.fn(() => billsList.handleClickNewBill())
         newBillBtn.addEventListener('click', handleClickNewBillEvent)
         userEvent.click(newBillBtn)
+
+        // Vérification de l'appel de la fonction de redirection
         expect(handleClickNewBillEvent).toHaveBeenCalled()
       })
     })
