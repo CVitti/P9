@@ -1,5 +1,7 @@
 # P9
 
+Lancement de l'application via l'extension "Live-server" sur VS Code.
+
 Utilisateurs par défaut:
 
 administrateur :
